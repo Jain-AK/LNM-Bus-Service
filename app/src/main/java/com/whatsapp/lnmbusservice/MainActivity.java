@@ -14,5 +14,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
       //  textView=findViewById(R.id.)
+        //android app deevlpmnt
     }
 }
