@@ -26,6 +26,7 @@
         android:layout_marginTop="25dp"
         android:text="LNM Bus Service"
         android:textSize="30sp"
+        android:textColor="@color/black"
         android:transitionName="app_name"
         app:layout_constraintEnd_toEndOf="@+id/logoImage"
         app:layout_constraintHorizontal_bias="0.512"
