@@ -138,7 +138,6 @@
         android:layout_marginBottom="5dp"
         android:backgroundTint="@color/black"
         android:padding="10dp"
-        android:onClick="Continue"
         android:text="Continue"
         android:textAllCaps="false"
         android:textColor="@color/white"

@@ -2,13 +2,26 @@ package com.whatsapp.lnmbusservice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
+
+import static com.whatsapp.lnmbusservice.AdminLogin.ShowError;
+
 public class user_detail extends AppCompatActivity {
+
+    TextInputLayout inputFirstName, inputLastName, inputBatch, inputGender;
+
+    MaterialButton button;
+
+    String userFirstName, userLastName, userBatch, userGender;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +40,47 @@ public class user_detail extends AppCompatActivity {
 
         AutoCompleteTextView autoCompleteTextView2 = findViewById(R.id.autoCompleteBatch);
         autoCompleteTextView2.setAdapter(adapter2);
+
+        inputFirstName = findViewById(R.id.input_first_name_details);
+        inputLastName = findViewById(R.id.input_last_name_details);
+        inputGender = findViewById(R.id.input_gender_details);
+        inputBatch = findViewById(R.id.input_batch_details);
+
+        button = findViewById(R.id.btn_continue_details);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (inputFirstName.getEditText() != null && inputLastName.getEditText() != null && inputGender.getEditText() != null) {
+                    userFirstName = inputFirstName.getEditText().getText().toString().toLowerCase();
+                    userLastName = inputLastName.getEditText().getText().toString().toLowerCase();
+                    userBatch = inputBatch.getEditText().getText().toString();
+                    userGender = inputGender.getEditText().getText().toString();
+                }
+
+                if (userFirstName.isEmpty()) {
+                    ShowError(inputFirstName, "Please Fill this field");
+                    return;
+                }
+                if (userLastName.isEmpty()) {
+                    ShowError(inputLastName, "Please Fill this field");
+                    return;
+                }
+                if (userGender.isEmpty()) {
+                    ShowError(inputGender, "Please Fill this field");
+                    return;
+                }
+                if (userBatch.isEmpty()) {
+                    ShowError(inputGender, "Please Fill this field");
+                    return;
+                }
+
+                startActivity(new Intent(user_detail.this, BusBook.class));
+                finish();
+
+            }
+        });
 
     }
 }
