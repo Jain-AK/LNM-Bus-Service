@@ -5,16 +5,16 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Bus {
 
-    private int Id;
+    private String Id;
     private String Arrival;
     private String Destination;
     private String Time;
-    private int Seats;
+    private String Seats;
 
     public Bus() {
     }
 
-    public int getId() {
+    public String getId() {
         return Id;
     }
 
@@ -30,11 +30,11 @@ public class Bus {
         return Time;
     }
 
-    public int getSeats() {
+    public String getSeats() {
         return Seats;
     }
 
-    public Bus(int Id, String arrival, String destination, String time, int seats) {
+    public Bus(String Id, String arrival, String destination, String time, String seats) {
         this.Id = Id;
         Arrival = arrival;
         Destination = destination;

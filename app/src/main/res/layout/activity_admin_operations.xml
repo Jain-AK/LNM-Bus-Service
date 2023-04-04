@@ -91,7 +91,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/time"
+            android:id="@+id/Bustime"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_below="@+id/desti"
             android:layout_width="match_parent"
@@ -114,9 +114,9 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/seats"
+            android:id="@+id/Busseats"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_below="@+id/time"
+            android:layout_below="@+id/Bustime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -137,10 +137,10 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/add"
+            android:id="@+id/Busadd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/seats"
+            android:layout_below="@+id/Busseats"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -148,6 +148,23 @@
             android:backgroundTint="@color/black"
             android:padding="10dp"
             android:text="Add Bus"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:cornerRadius="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/Busshow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Busadd"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/black"
+            android:padding="10dp"
+            android:text="Show All Buses"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp"
