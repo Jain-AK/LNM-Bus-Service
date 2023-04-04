@@ -10,7 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LNMBusService">
         <activity android:name=".BusBook"></activity>
-        <activity android:name=".AdminOperations" />
+        <activity android:name=".AdminOperations"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".AdminLogin"
             android:exported="true"></activity>
@@ -23,11 +30,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
