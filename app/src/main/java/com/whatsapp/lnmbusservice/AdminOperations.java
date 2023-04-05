@@ -95,9 +95,10 @@ public class AdminOperations extends AppCompatActivity {
             return;
         }
 
-        String Id = databaseReference.push().getKey();
+        //String Id = databaseReference.push().getKey();
 
         Bus bus = new Bus(busId,busArrival,busDesti,busTime,busSeats);
+        String Id = "Bus " + busId;
         databaseReference.child("Bus_Details").child(Id).setValue(bus)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
