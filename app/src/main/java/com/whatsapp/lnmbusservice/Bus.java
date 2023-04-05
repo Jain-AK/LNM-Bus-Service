@@ -6,10 +6,10 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class Bus {
 
     private String Id;
-    private String Arrival;
-    private String Destination;
-    private String Time;
-    private String Seats;
+    private String arrival;
+    private String destination;
+    private String time;
+    private String seats;
 
     public Bus() {
     }
@@ -19,26 +19,26 @@ public class Bus {
     }
 
     public String getArrival() {
-        return Arrival;
+        return arrival;
     }
 
     public String getDestination() {
-        return Destination;
+        return destination;
     }
 
     public String getTime() {
-        return Time;
+        return time;
     }
 
     public String getSeats() {
-        return Seats;
+        return seats;
     }
 
     public Bus(String Id, String arrival, String destination, String time, String seats) {
         this.Id = Id;
-        Arrival = arrival;
-        Destination = destination;
-        Time = time;
-        Seats = seats;
+        this.arrival = arrival;
+        this.destination = destination;
+        this.time = time;
+        this.seats = seats;
     }
 }
