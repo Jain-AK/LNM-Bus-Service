@@ -9,8 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LNMBusService">
-        <activity android:name=".BusBook"></activity>
-        <activity android:name=".AdminOperations"
+        <activity android:name=".bookBus"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".BusBook" />
+        <activity
+            android:name=".AdminOperations"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,18 +29,16 @@
         </activity>
         <activity
             android:name=".AdminLogin"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".user_detail"
             android:exported="true" />
         <activity
             android:name=".new_login"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>
