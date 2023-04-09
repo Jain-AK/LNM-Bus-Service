@@ -22,9 +22,6 @@ public class AdminOperations extends AppCompatActivity {
     MaterialButton button, all_btn;
     TextInputLayout id,arrival,destination,time,seats;
 
-    int bus_id;
-    int bus_seat;
-
     String busId,busArrival,busDesti,busTime,busSeats;
 
     DatabaseReference databaseReference;
@@ -67,11 +64,11 @@ public class AdminOperations extends AppCompatActivity {
 
 
         if(id.getEditText()!=null && arrival.getEditText()!=null && destination.getEditText()!=null && time.getEditText()!=null && seats.getEditText()!=null){
-            busId = (id.getEditText().getText().toString());
+            busId = id.getEditText().getText().toString();
             busArrival = arrival.getEditText().getText().toString();
             busDesti = destination.getEditText().getText().toString();
             busTime = time.getEditText().getText().toString();
-            busSeats = (seats.getEditText().getText().toString());
+            busSeats = seats.getEditText().getText().toString();
         }
 
         if (busId.isEmpty()) {

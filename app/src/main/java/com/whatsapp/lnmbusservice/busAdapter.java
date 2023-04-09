@@ -1,6 +1,7 @@
 package com.whatsapp.lnmbusservice;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,14 @@ public class busAdapter extends RecyclerView.Adapter<busAdapter.Holder> {
         holder.departure.setText(bus.getDestination());
         holder.time.setText(bus.getTime());
         holder.seat.setText(bus.getSeats());
+
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, payment.class);
+                context.startActivity(intent);
+            }
+        });
 
     }
 

@@ -3,6 +3,7 @@ package com.whatsapp.lnmbusservice;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
@@ -38,6 +41,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         Bus bus = list.get(position);
 
+        holder.Id.setText(bus.getId());
         holder.arrival.setText(bus.getArrival());
         holder.departure.setText(bus.getDestination());
         holder.time.setText(bus.getTime());
@@ -58,7 +62,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                                 .removeValue();
 
                         Toast.makeText(holder.arrival.getContext(), "Deleted Sucessfully", Toast.LENGTH_SHORT).show();
-
                     }
                 });
 
@@ -81,13 +84,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView arrival, departure, time, seat;
+        TextView Id, arrival, departure, time, seat;
 
         Button button;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
+            Id = itemView.findViewById(R.id.busId);
             arrival = itemView.findViewById(R.id.busArrival);
             departure = itemView.findViewById(R.id.busDeparture);
             time = itemView.findViewById(R.id.busTime);
