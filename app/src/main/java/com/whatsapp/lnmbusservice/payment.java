@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.razorpay.Checkout;
@@ -16,6 +17,7 @@ import org.json.JSONObject;
 
 public class payment extends AppCompatActivity implements PaymentResultListener {
 
+    TextView arrival, desti, time;
     Button button;
 
     @Override
@@ -24,6 +26,19 @@ public class payment extends AppCompatActivity implements PaymentResultListener 
         setContentView(R.layout.activity_payment);
 
         button = findViewById(R.id.pay_razor);
+
+        arrival = findViewById(R.id.pay_arrival);
+        desti = findViewById(R.id.pay_dept);
+        time = findViewById(R.id.pay_time);
+
+        String Arrival = getIntent().getStringExtra("Arrival_next");
+        String Dept = getIntent().getStringExtra("Dept_next");
+        String Times = getIntent().getStringExtra("Time_next");
+
+        arrival.setText(Arrival);
+        desti.setText(Dept);
+        time.setText(Times);
+
 
         Checkout.preload(getApplicationContext());
 

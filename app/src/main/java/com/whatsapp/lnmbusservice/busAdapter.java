@@ -42,6 +42,9 @@ public class busAdapter extends RecyclerView.Adapter<busAdapter.Holder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, payment.class);
+                intent.putExtra("Arrival_next", bus.getArrival());
+                intent.putExtra("Dept_next", bus.getDestination());
+                intent.putExtra("Time_next", bus.getTime());
                 context.startActivity(intent);
             }
         });
