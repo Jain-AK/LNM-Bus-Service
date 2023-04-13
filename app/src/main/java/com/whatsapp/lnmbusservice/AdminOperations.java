@@ -22,7 +22,7 @@ public class AdminOperations extends AppCompatActivity {
     MaterialButton button, all_btn;
     TextInputLayout id,arrival,destination,time,seats;
 
-    String busId,busArrival,busDesti,busTime,busSeats;
+    String busIdx,busArrival,busDesti,busTime,busSeats;
 
     DatabaseReference databaseReference;
 
@@ -52,8 +52,9 @@ public class AdminOperations extends AppCompatActivity {
         all_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminOperations.this, BusBook.class));
-                finish();
+                //startActivity(new Intent(AdminOperations.this, BusBook.class));
+                Intent intent = new Intent(AdminOperations.this, BusBook.class);
+                startActivity(intent);
             }
         });
 
@@ -64,14 +65,14 @@ public class AdminOperations extends AppCompatActivity {
 
 
         if(id.getEditText()!=null && arrival.getEditText()!=null && destination.getEditText()!=null && time.getEditText()!=null && seats.getEditText()!=null){
-            busId = id.getEditText().getText().toString();
+            busIdx = id.getEditText().getText().toString();
             busArrival = arrival.getEditText().getText().toString();
             busDesti = destination.getEditText().getText().toString();
             busTime = time.getEditText().getText().toString();
             busSeats = seats.getEditText().getText().toString();
         }
 
-        if (busId.isEmpty()) {
+        if (busIdx.isEmpty()) {
             ShowError(id, "Please Fill this field");
             return;
         }
@@ -94,8 +95,8 @@ public class AdminOperations extends AppCompatActivity {
 
         //String Id = databaseReference.push().getKey();
 
-        Bus bus = new Bus(busId,busArrival,busDesti,busTime,busSeats);
-        String Id = "Bus " + busId;
+        Bus bus = new Bus(busIdx,busArrival,busDesti,busTime,busSeats);
+        String Id = "Bus " + busIdx;
         databaseReference.child("Bus_Details").child(Id).setValue(bus)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

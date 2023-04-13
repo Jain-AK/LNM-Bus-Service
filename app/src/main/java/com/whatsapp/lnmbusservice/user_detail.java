@@ -76,7 +76,7 @@ public class user_detail extends AppCompatActivity {
                     return;
                 }
 
-                startActivity(new Intent(user_detail.this, BusBook.class));
+                startActivity(new Intent(user_detail.this, bookBus.class));
                 finish();
 
             }

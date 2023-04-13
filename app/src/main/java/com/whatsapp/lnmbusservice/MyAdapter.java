@@ -57,9 +57,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        FirebaseDatabase.getInstance().getReference().child("Bus_Details")
-                                .child(("Bus " + bus.getId()))
-                                .removeValue();
+                        String id = bus.getId().toString();
+                        Log.d("check", id);
+                        //buss
+                        FirebaseDatabase.getInstance().getReference("Bus_Details")
+                                .child("Bus 1")
+                                .child("arrival")
+                                .setValue("0");
 
                         Toast.makeText(holder.arrival.getContext(), "Deleted Sucessfully", Toast.LENGTH_SHORT).show();
                     }
