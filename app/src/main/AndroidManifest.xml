@@ -25,7 +25,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LNMBusService">
-        <activity android:name=".confirmation"></activity>
+        <activity android:name=".confirmation"
+            android:exported="true">
+
+        </activity>
         <activity android:name=".payment" />
         <activity
             android:name=".bookBus"

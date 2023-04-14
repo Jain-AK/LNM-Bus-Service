@@ -38,6 +38,7 @@ public class BusBook extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler);
         databaseReference = FirebaseDatabase.getInstance().getReference("Bus_Details");
         list = new ArrayList<>();
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new MyAdapter(this,list);
@@ -47,11 +48,11 @@ public class BusBook extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+                list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Bus bus = dataSnapshot.getValue(Bus.class);
                     list.add(bus);
                 }
-
                 adapter.notifyDataSetChanged();
             }
 

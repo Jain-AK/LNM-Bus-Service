@@ -41,6 +41,7 @@ public class bookBus extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+                list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Bus bus = dataSnapshot.getValue(Bus.class);
                     list.add(bus);

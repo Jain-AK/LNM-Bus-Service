@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,11 +42,23 @@ public class busAdapter extends RecyclerView.Adapter<busAdapter.Holder> {
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, payment.class);
-                intent.putExtra("Arrival_next", bus.getArrival());
-                intent.putExtra("Dept_next", bus.getDestination());
-                intent.putExtra("Time_next", bus.getTime());
-                context.startActivity(intent);
+
+                if(bus.getSeats().equals("0")){
+                    Toast.makeText(holder.arrival.getContext(), "Seats not Available", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent intent = new Intent(context, payment.class);
+                    intent.putExtra("Arrival_next", bus.getArrival());
+                    intent.putExtra("Dept_next", bus.getDestination());
+                    intent.putExtra("Time_next", bus.getTime());
+                    intent.putExtra("ID_next", bus.getId());
+                    context.startActivity(intent);
+
+                    list.clear();
+                    notifyDataSetChanged();
+                }
+
+
             }
         });
 

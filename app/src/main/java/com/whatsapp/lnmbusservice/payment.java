@@ -15,6 +15,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
@@ -27,7 +35,42 @@ public class payment extends AppCompatActivity implements PaymentResultListener 
     TextView arrival, desti, time;
     Button button, upi_btn;
 
+    int st;
+
+    String Arrival,Dept,Times,ID;
+
     final int UPI_PAYMENT = 0;
+
+    DatabaseReference databaseReference;
+
+    FirebaseDatabase firebaseDatabase;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Bus_Details").child("Bus "+ID);
+        databaseReference.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null){
+
+                    Bus bs =dataSnapshot.getValue(Bus.class);
+                    String ans = bs.getSeats();
+                    st = Integer.valueOf(ans);
+                    st = st+1;
+                    String seams = String.valueOf(st);
+
+                    databaseReference
+                            .child("seats")
+                            .setValue(seams);
+
+                }
+            }
+        });
+
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +84,35 @@ public class payment extends AppCompatActivity implements PaymentResultListener 
         desti = findViewById(R.id.pay_dept);
         time = findViewById(R.id.pay_time);
 
-        String Arrival = getIntent().getStringExtra("Arrival_next");
-        String Dept = getIntent().getStringExtra("Dept_next");
-        String Times = getIntent().getStringExtra("Time_next");
+        Arrival = getIntent().getStringExtra("Arrival_next");
+        Dept = getIntent().getStringExtra("Dept_next");
+        Times = getIntent().getStringExtra("Time_next");
+        ID = getIntent().getStringExtra("ID_next");
 
         arrival.setText(Arrival);
         desti.setText(Dept);
         time.setText(Times);
+
+//        final String[] seat = new String[1];
+        databaseReference = FirebaseDatabase.getInstance().getReference("Bus_Details").child("Bus "+ID);
+       databaseReference.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+           @Override
+           public void onSuccess(DataSnapshot dataSnapshot) {
+               if(dataSnapshot!=null){
+
+                   Bus bs =dataSnapshot.getValue(Bus.class);
+                   String ans = bs.getSeats();
+                   st = Integer.valueOf(ans);
+                   st = st-1;
+                   String seams = String.valueOf(st);
+
+                   databaseReference
+                           .child("seats")
+                           .setValue(seams);
+
+               }
+           }
+       });
 
 
         Checkout.preload(getApplicationContext());
@@ -234,15 +299,48 @@ public class payment extends AppCompatActivity implements PaymentResultListener 
 
     @Override
     public void onPaymentSuccess(String s) {
+
+
+
         Log.d("onSucess", "onPaymentSuccess: "+ s);
         Toast.makeText(payment.this, "Payment Successfull", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(payment.this, confirmation.class);
+        intent.putExtra("Arrival_conf", Arrival);
+        intent.putExtra("Dept_conf", Dept);
+        intent.putExtra("Time_conf", Times);
         startActivity(intent);
     }
 
     @Override
     public void onPaymentError(int i, String s) {
+
+        Toast.makeText(payment.this, "Payment Failed", Toast.LENGTH_SHORT).show();
+
         Log.d("onError", "onPaymentError: "+ s);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Bus_Details").child("Bus "+ID);
+        databaseReference.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null){
+
+                    Bus bs =dataSnapshot.getValue(Bus.class);
+                    String ans = bs.getSeats();
+                    st = Integer.valueOf(ans);
+                    st = st+1;
+                    String seams = String.valueOf(st);
+
+                    databaseReference
+                            .child("seats")
+                            .setValue(seams);
+
+                }
+            }
+        });
+
+        Intent intent = new Intent(payment.this, bookBus.class);
+        startActivity(intent);
+
     }
 }
