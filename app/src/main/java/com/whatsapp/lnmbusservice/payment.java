@@ -62,7 +62,7 @@ public class payment extends AppCompatActivity implements PaymentResultListener 
         upi_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                payUsingUpi("LNMIIT", "harshul2k@okhdfcbank", "Bus Ticket", "25");
+                payUsingUpi("Ayush Jain", "7891220133@ybl", "Bus Ticket", "25");
             }
         });
     }
@@ -236,6 +236,9 @@ public class payment extends AppCompatActivity implements PaymentResultListener 
     public void onPaymentSuccess(String s) {
         Log.d("onSucess", "onPaymentSuccess: "+ s);
         Toast.makeText(payment.this, "Payment Successfull", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(payment.this, confirmation.class);
+        startActivity(intent);
     }
 
     @Override
