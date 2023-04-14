@@ -118,7 +118,7 @@ public class new_login extends AppCompatActivity {
                                 Toast toast = Toast.makeText(getApplicationContext(), "Sign Up With College Mail Id", Toast.LENGTH_SHORT);
                                 toast.show();
                                 Log.w(TAG, "signInWithCredential:failure", task.getException());
-                                updateUI(null);
+                               // updateUI(null);
                             }
 
 

@@ -5,7 +5,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Bus {
 
-    private String Id;
+    private String id;
     private String arrival;
     private String destination;
     private String time;
@@ -15,7 +15,7 @@ public class Bus {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public String getArrival() {
@@ -35,7 +35,7 @@ public class Bus {
     }
 
     public Bus(String Id, String arrival, String destination, String time, String seats) {
-        this.Id = Id;
+        this.id = Id;
         this.arrival = arrival;
         this.destination = destination;
         this.time = time;
