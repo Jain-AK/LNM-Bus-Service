@@ -13,6 +13,12 @@ public class MainActivity extends AppCompatActivity {
     Button admin_btn;
     Button stud_btn;
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
